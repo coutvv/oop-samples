@@ -6,6 +6,7 @@ import ru.coutvv.oop.samples.decorator.DarkRoast;
 import ru.coutvv.oop.samples.decorator.Espresso;
 import ru.coutvv.oop.samples.decorator.HouseBlend;
 import ru.coutvv.oop.samples.decorator.myown.mixes.Mocha;
+import ru.coutvv.oop.samples.decorator.myown.mixes.SmallPortion;
 import ru.coutvv.oop.samples.decorator.myown.mixes.Soy;
 import ru.coutvv.oop.samples.decorator.myown.mixes.Whip;
 /**
@@ -30,6 +31,9 @@ public class TestDecorator extends TestCase{
 		hb = new Soy(hb);
 		hb = new Mocha(hb);
 		hb = new Whip(hb);
+		System.out.println(hb.getDescription() + " $ " + hb.cost());
+		
+		hb = new SmallPortion(hb);
 		System.out.println(hb.getDescription() + " $ " + hb.cost());
 	}
 }
