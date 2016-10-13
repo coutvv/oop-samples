@@ -4,6 +4,9 @@ public class HouseBlend extends Beverage {
 
 	public HouseBlend() {
 		this.description = "Хаусбленд";
-		this.cost = 5.0;
+	}
+	
+	public double cost() {
+		return 5;
 	}
 }

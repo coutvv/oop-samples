@@ -6,6 +6,9 @@ public class Decaf extends Beverage {
 
 	public Decaf() {
 			this.description = "decaf";
-			this.cost = 20.0;
+	}
+	
+	public double cost() {
+		return 20;
 	}
 }

@@ -4,6 +4,9 @@ public class DarkRoast extends Beverage {
 
 	public DarkRoast() {
 		this.description = "Это даркроаст";
-		this.cost = 25.0;
+	}
+	
+	public double cost() {
+		return 25;
 	}
 }

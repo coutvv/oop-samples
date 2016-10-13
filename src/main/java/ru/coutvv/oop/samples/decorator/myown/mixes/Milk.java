@@ -1,11 +1,25 @@
 package ru.coutvv.oop.samples.decorator.myown.mixes;
 
 import ru.coutvv.oop.samples.decorator.Beverage;
+import ru.coutvv.oop.samples.decorator.Condiment;
 
-public class Milk extends Beverage {
+public class Milk extends Condiment {
 
-	public Milk() {
-		this.description = "milk";
-		this.cost = 5.0;
+	Beverage beverage;
+	public Milk(Beverage bev) {
+		beverage = bev;
 	}
+
+
+	@Override
+	public String getDescription() {
+		return beverage.getDescription() + ", Milk";
+	}
+
+	@Override
+	public double cost() {
+		return 5 + beverage.cost();
+	}
+	
+	
 }
