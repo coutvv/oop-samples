@@ -47,7 +47,7 @@ public class TestDecorator extends TestCase{
 		try {
 			InputStream in = new LowerCaseInputStream(
 									new BufferedInputStream(
-											new FileInputStream("test.txt")
+											new FileInputStream("src/main/resources/testIODecorator.txt")
 											)
 							);
 			int c; 
