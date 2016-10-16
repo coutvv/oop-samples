@@ -1,6 +1,6 @@
-package ru.coutvv.oop.samples.sumuduck.superduck.behavior;
+package ru.coutvv.oop.samples.strategy.superduck.behavior;
 
-import ru.coutvv.oop.samples.sumuduck.superduck.QuackBehavior;
+import ru.coutvv.oop.samples.strategy.superduck.QuackBehavior;
 
 public class MuteQuack implements QuackBehavior {
 

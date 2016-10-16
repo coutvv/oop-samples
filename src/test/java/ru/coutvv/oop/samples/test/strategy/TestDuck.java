@@ -1,10 +1,10 @@
-package ru.coutvv.oop.samples.test.sumuduck;
+package ru.coutvv.oop.samples.test.strategy;
 
 import junit.framework.TestCase;
-import ru.coutvv.oop.samples.sumuduck.realduck.ModelDuck;
-import ru.coutvv.oop.samples.sumuduck.realduck.SimpleDuck;
-import ru.coutvv.oop.samples.sumuduck.superduck.Duck;
-import ru.coutvv.oop.samples.sumuduck.superduck.behavior.FlyRocketBeahavior;
+import ru.coutvv.oop.samples.strategy.realduck.ModelDuck;
+import ru.coutvv.oop.samples.strategy.realduck.SimpleDuck;
+import ru.coutvv.oop.samples.strategy.superduck.Duck;
+import ru.coutvv.oop.samples.strategy.superduck.behavior.FlyRocketBeahavior;
 
 public class TestDuck extends TestCase  {
 	

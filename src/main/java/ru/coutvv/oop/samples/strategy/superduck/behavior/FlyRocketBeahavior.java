@@ -1,6 +1,6 @@
-package ru.coutvv.oop.samples.sumuduck.superduck.behavior;
+package ru.coutvv.oop.samples.strategy.superduck.behavior;
 
-import ru.coutvv.oop.samples.sumuduck.superduck.FlyBehavior;
+import ru.coutvv.oop.samples.strategy.superduck.FlyBehavior;
 
 public class FlyRocketBeahavior implements FlyBehavior {
 
