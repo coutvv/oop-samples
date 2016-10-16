@@ -1,7 +1,7 @@
-package ru.coutvv.oop.samples.sumuduck;
+package ru.coutvv.oop.samples.strategy;
 
-import ru.coutvv.oop.samples.sumuduck.superduck.QuackBehavior;
-import ru.coutvv.oop.samples.sumuduck.superduck.behavior.JustQuack;
+import ru.coutvv.oop.samples.strategy.superduck.QuackBehavior;
+import ru.coutvv.oop.samples.strategy.superduck.behavior.JustQuack;
 
 /**
  * this simudock package demonstrate pattern Strategy!
