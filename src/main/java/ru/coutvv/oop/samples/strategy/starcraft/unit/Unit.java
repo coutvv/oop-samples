@@ -2,7 +2,11 @@ package ru.coutvv.oop.samples.strategy.starcraft.unit;
 
 import ru.coutvv.oop.samples.strategy.starcraft.unit.behavior.HitBehavior;
 import ru.coutvv.oop.samples.strategy.starcraft.unit.behavior.MoveBehavior;
-
+/**
+ * Паттерн Стратегия
+ * @author lomovtsevrs
+ *
+ */
 public abstract class Unit {
 
 	//unit characteristics
