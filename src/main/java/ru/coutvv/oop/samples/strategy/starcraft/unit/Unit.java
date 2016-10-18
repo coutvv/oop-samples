@@ -18,8 +18,12 @@ public abstract class Unit {
 	
 	public boolean isAlive = true;
 	
-	MoveBehavior moveBehavior;
-	HitBehavior hitBehavior;
+	protected MoveBehavior moveBehavior;
+	protected HitBehavior hitBehavior;
+	
+	public Unit(){
+		
+	}
 	
 	public Unit(HitBehavior hit, MoveBehavior move) {
 		this.setHitBehavior(hit);
