@@ -24,5 +24,10 @@ public class Zealot extends Unit {
 	public void display() {
 		System.out.println("display Zealot");
 	}
+	
+	@Override
+	public void enemyNear(double x, double y) {
+		System.out.println("Май лайф фо АЙЮР!1!!!!");
+	}
 
 }

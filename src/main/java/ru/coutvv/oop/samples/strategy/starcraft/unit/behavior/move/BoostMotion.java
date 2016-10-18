@@ -22,7 +22,7 @@ public class BoostMotion implements MoveBehavior{
 			 //там теорема синусов вычисляющая какую то херь, мне лень поэтому просто
 			doDist += currentSpeed;
 			if(currentSpeed < unitSpeed* 3) currentSpeed *= 2; 
-			System.out.println(unit.getClass() + " прошёл " + doDist);
+			System.out.println("Юнит с хэшом #" + unit.hashCode() + " прошёл " + doDist);
 			try {
 				Thread.sleep(period);
 			} catch (InterruptedException e) {

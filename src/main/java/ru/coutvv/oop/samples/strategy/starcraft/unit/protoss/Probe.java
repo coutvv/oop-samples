@@ -26,4 +26,8 @@ public class Probe extends Unit {
 		System.out.println("Show Probe!");
 	}
 
+	@Override
+	public void enemyNear(double x, double y) {
+		System.out.println("Пробке нужно бежать!!!!");
+	}
 }

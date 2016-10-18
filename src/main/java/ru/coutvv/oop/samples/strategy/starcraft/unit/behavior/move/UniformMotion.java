@@ -19,7 +19,7 @@ public class UniformMotion implements MoveBehavior {
 		while(doDist < distance) {
 			 //там теорема синусов вычисляющая какую то херь, мне лень поэтому просто
 			doDist += unitSpeed;
-			System.out.println(unit.getClass() + " прошёл " + doDist);
+			System.out.println("Юнит с хэшом #" + unit.hashCode() + " прошёл " + doDist);
 			try {
 				Thread.sleep(period);
 			} catch (InterruptedException e) {

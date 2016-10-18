@@ -1,5 +1,6 @@
 package ru.coutvv.oop.samples.strategy.starcraft.unit;
 
+import ru.coutvv.oop.samples.strategy.starcraft.unit.behavior.AIBehavior;
 import ru.coutvv.oop.samples.strategy.starcraft.unit.behavior.HitBehavior;
 import ru.coutvv.oop.samples.strategy.starcraft.unit.behavior.MoveBehavior;
 /**
@@ -7,7 +8,7 @@ import ru.coutvv.oop.samples.strategy.starcraft.unit.behavior.MoveBehavior;
  * @author lomovtsevrs
  *
  */
-public abstract class Unit {
+public abstract class Unit implements AIBehavior{
 
 	//unit characteristics
 	double x, y;
@@ -119,4 +120,8 @@ public abstract class Unit {
 		this.health = health;
 	}
 
+	/** по умолчанию действия ИИ */
+	public void enemyNear(double x, double y) {
+		//ничего не делаем
+	}
 }

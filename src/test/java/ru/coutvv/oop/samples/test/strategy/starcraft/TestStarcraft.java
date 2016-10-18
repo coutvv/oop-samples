@@ -1,9 +1,17 @@
 package ru.coutvv.oop.samples.test.strategy.starcraft;
 
-import junit.framework.TestCase;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import ru.coutvv.oop.samples.strategy.starcraft.building.Building;
 import ru.coutvv.oop.samples.strategy.starcraft.building.protoss.GateWay;
 import ru.coutvv.oop.samples.strategy.starcraft.building.protoss.Nexus;
+import ru.coutvv.oop.samples.strategy.starcraft.player.ai.EnemyAppearenceSubject;
+import ru.coutvv.oop.samples.strategy.starcraft.player.ai.EnemyAppearenceSubjectImpl;
+import ru.coutvv.oop.samples.strategy.starcraft.player.command.MoveOrder;
+import ru.coutvv.oop.samples.strategy.starcraft.player.command.Order;
+import ru.coutvv.oop.samples.strategy.starcraft.player.command.observer.ControlPanel;
+import ru.coutvv.oop.samples.strategy.starcraft.player.command.observer.ControlPanelImpl;
 import ru.coutvv.oop.samples.strategy.starcraft.unit.Unit;
 import ru.coutvv.oop.samples.strategy.starcraft.unit.UnitType;
 import ru.coutvv.oop.samples.strategy.starcraft.unit.behavior.hit.JustAttack;
@@ -15,9 +23,9 @@ import ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.buff.UnitDamageBuff
 import ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.buff.damage.MicoseBuff;
 import ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.buff.damage.ShieldBuff;
 
-public class TestStarcraft extends TestCase {
+public class TestStarcraft  {
 
-	
+	@Test
 	public void test() {
 		Unit zealot = createZealot();
 		Unit stalker = createStalker();
@@ -27,6 +35,7 @@ public class TestStarcraft extends TestCase {
 		
 	}
 	
+	@Test
 	public void testDecorator() {
 		Building gateWay = new GateWay();
 		Building nexus = new Nexus();
@@ -40,6 +49,33 @@ public class TestStarcraft extends TestCase {
 		if(probe1 instanceof UnitDamageBuff) {
 			probe2 = ((UnitDamageBuff)probe2).getUnit();//выходим из под шилдов
 		}
+	}
+	
+	@Test
+	@Ignore
+	public void testObserver() { //это не наблюдатель, а мой франкинштейн
+		Building gateWay = new GateWay();
+		Unit zealot = gateWay.createUnit(UnitType.zealot);
+		Unit zealot2 = gateWay.createUnit(UnitType.zealot);
+		Unit zealot3= gateWay.createUnit(UnitType.zealot);
+		Unit zealot4 = gateWay.createUnit(UnitType.zealot);
+		ControlPanel control = new ControlPanelImpl();
+		control.selectUnit(zealot);
+		control.selectUnit(zealot2);
+		control.selectUnit(zealot4);
+		Order order = new MoveOrder(40, 50);
+		control.controlUnit(order);
+	}
+	
+	@Test
+	public void testTrueObserver() {
+		Building gateWay = new GateWay();
+		Unit zealot = gateWay.createUnit(UnitType.zealot);
+		Unit stalker = gateWay.createUnit(UnitType.stalker);
+		EnemyAppearenceSubject eas = new EnemyAppearenceSubjectImpl();
+		eas.registerUnit(zealot);
+		eas.registerUnit(stalker);
+		eas.notifyUnits(12, 14);
 	}
 	
 	private Unit createZealot(){

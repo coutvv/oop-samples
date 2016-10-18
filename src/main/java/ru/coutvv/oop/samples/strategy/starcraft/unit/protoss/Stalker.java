@@ -24,5 +24,10 @@ public class Stalker extends Unit {
 	public void display() {
 		System.out.println("display Stalker");
 	}
+	
+	@Override
+	public void enemyNear(double x, double y) {
+		System.out.println("Пустота холодна...(бьём вражину)");
+	}
 
 }
