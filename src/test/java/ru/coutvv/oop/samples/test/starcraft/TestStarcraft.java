@@ -1,4 +1,4 @@
-package ru.coutvv.oop.samples.test.strategy.starcraft;
+package ru.coutvv.oop.samples.test.starcraft;
 
 import org.junit.Ignore;
 import org.junit.Test;
