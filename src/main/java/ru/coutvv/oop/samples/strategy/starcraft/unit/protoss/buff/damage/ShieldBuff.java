@@ -1,14 +1,14 @@
 package ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.buff.damage;
 
 import ru.coutvv.oop.samples.strategy.starcraft.unit.Unit;
-import ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.buff.UnitDamageBuff;
+import ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.buff.UnitBuff;
 
 /***
  * Что то тут блять не так, чую
  * @author lomovtsevrs
  *
  */
-public class ShieldBuff extends UnitDamageBuff {
+public class ShieldBuff extends UnitBuff {
 
 	private double armorBuff = 1;
 	

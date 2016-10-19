@@ -4,7 +4,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import ru.coutvv.oop.samples.strategy.starcraft.building.Building;
-import ru.coutvv.oop.samples.strategy.starcraft.building.protoss.GateWay;
+import ru.coutvv.oop.samples.strategy.starcraft.building.production.GatewayFactory;
+import ru.coutvv.oop.samples.strategy.starcraft.building.production.NerazimGatewayFactory;
+import ru.coutvv.oop.samples.strategy.starcraft.building.production.TaldarimGatewayFactory;
+import ru.coutvv.oop.samples.strategy.starcraft.building.production.TemplarGatewayFactory;
+import ru.coutvv.oop.samples.strategy.starcraft.building.protoss.Gateway;
 import ru.coutvv.oop.samples.strategy.starcraft.building.protoss.Nexus;
 import ru.coutvv.oop.samples.strategy.starcraft.player.ai.EnemyAppearenceSubject;
 import ru.coutvv.oop.samples.strategy.starcraft.player.ai.EnemyAppearenceSubjectImpl;
@@ -19,7 +23,7 @@ import ru.coutvv.oop.samples.strategy.starcraft.unit.behavior.move.BoostMotion;
 import ru.coutvv.oop.samples.strategy.starcraft.unit.behavior.move.UniformMotion;
 import ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.Stalker;
 import ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.Zealot;
-import ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.buff.UnitDamageBuff;
+import ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.buff.UnitBuff;
 import ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.buff.damage.MicoseBuff;
 import ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.buff.damage.ShieldBuff;
 
@@ -37,24 +41,26 @@ public class TestStarcraft  {
 	
 	@Test
 	public void testDecorator() {
-		Building gateWay = new GateWay();
+		Building gateWay = new Gateway(templar);
 		Building nexus = new Nexus();
 		Unit probe1 = nexus.createUnit(UnitType.probe);
 		Unit probe2 = nexus.createUnit(UnitType.probe);
 		probe1 = new MicoseBuff(probe1);//пробка под микозом
 		probe2 = new ShieldBuff(probe2);//пробка под шилдами
-		if(probe1 instanceof UnitDamageBuff) {
-			probe1 = ((UnitDamageBuff)probe1).getUnit();//выходим из под микоза
+		if(probe1 instanceof UnitBuff) {
+			probe1 = ((UnitBuff)probe1).getUnit();//выходим из под микоза
 		}
-		if(probe1 instanceof UnitDamageBuff) {
-			probe2 = ((UnitDamageBuff)probe2).getUnit();//выходим из под шилдов
+		if(probe1 instanceof UnitBuff) {
+			probe2 = ((UnitBuff)probe2).getUnit();//выходим из под шилдов
 		}
 	}
+	
+	public GatewayFactory templar = new TemplarGatewayFactory(); 
 	
 	@Test
 	@Ignore
 	public void testObserver() { //это не наблюдатель, а мой франкинштейн
-		Building gateWay = new GateWay();
+		Building gateWay = new Gateway(templar);
 		Unit zealot = gateWay.createUnit(UnitType.zealot);
 		Unit zealot2 = gateWay.createUnit(UnitType.zealot);
 		Unit zealot3= gateWay.createUnit(UnitType.zealot);
@@ -69,13 +75,40 @@ public class TestStarcraft  {
 	
 	@Test
 	public void testTrueObserver() {
-		Building gateWay = new GateWay();
+		Building gateWay = new Gateway(templar);
 		Unit zealot = gateWay.createUnit(UnitType.zealot);
 		Unit stalker = gateWay.createUnit(UnitType.stalker);
 		EnemyAppearenceSubject eas = new EnemyAppearenceSubjectImpl();
 		eas.registerUnit(zealot);
 		eas.registerUnit(stalker);
 		eas.notifyUnits(12, 14);
+	}
+	
+	@Test
+	public void testAbstractFactory() {
+		GatewayFactory templar = new TemplarGatewayFactory(); 
+		GatewayFactory taldarim = new TaldarimGatewayFactory(); 
+		GatewayFactory nerazim = new NerazimGatewayFactory();
+		
+		Building tempGate = new Gateway(templar),
+				 nerazGate = new Gateway(nerazim),
+				 taldaGate = new Gateway(taldarim);
+		
+		Unit temp= tempGate.createUnit(UnitType.zealot);
+		Unit neraz = nerazGate.createUnit(UnitType.zealot);
+		Unit talda = taldaGate.createUnit(UnitType.zealot);
+		System.out.println("Taldarim zealot: ");
+		logUnitProps(temp);
+		System.out.println("Templar zealot: ");
+		logUnitProps(neraz);
+		System.out.println("Nerazim zealot: ");
+		logUnitProps(talda);
+	}
+	
+	private void logUnitProps(Unit unit) {
+		unit.display();
+		System.out.println("Healthes: " + unit.getHealth());
+		System.out.println("Attack range: " + unit.getAttackRange());
 	}
 	
 	private Unit createZealot(){

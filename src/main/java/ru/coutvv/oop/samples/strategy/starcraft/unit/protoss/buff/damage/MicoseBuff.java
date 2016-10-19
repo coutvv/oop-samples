@@ -1,9 +1,9 @@
 package ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.buff.damage;
 
 import ru.coutvv.oop.samples.strategy.starcraft.unit.Unit;
-import ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.buff.UnitDamageBuff;
+import ru.coutvv.oop.samples.strategy.starcraft.unit.protoss.buff.UnitBuff;
 
-public class MicoseBuff extends UnitDamageBuff{
+public class MicoseBuff extends UnitBuff{
 
 	public MicoseBuff(Unit unit) {
 		super(unit);

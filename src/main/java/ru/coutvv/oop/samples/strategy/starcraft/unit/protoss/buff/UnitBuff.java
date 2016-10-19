@@ -8,11 +8,11 @@ import ru.coutvv.oop.samples.strategy.starcraft.unit.Unit;
  * 
  * @author lomovtsevrs
  */
-public abstract class UnitDamageBuff extends Unit {
+public abstract class UnitBuff extends Unit {
 
 	protected Unit unit;
 	
-	public UnitDamageBuff(Unit unit) {
+	public UnitBuff(Unit unit) {
 		super();
 		this.unit = unit;
 	}
