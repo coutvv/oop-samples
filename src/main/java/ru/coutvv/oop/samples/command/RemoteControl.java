@@ -4,7 +4,7 @@ import ru.coutvv.oop.samples.command.impl.NoCommand;
 
 public class RemoteControl {
 
-	private final int SLOTS = 3;
+	private final int SLOTS = 5;
 	
 	Command[] onCommands;
 	Command[] offCommands;
