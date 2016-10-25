@@ -79,7 +79,7 @@ public class MySample {
 				coordX += 10;
 				break;
 			case GLFW_KEY_ENTER:
-				System.out.println(res);
+				System.out.println(marineTexture);
 				break;
 			default:
 				break;
@@ -112,10 +112,9 @@ public class MySample {
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		texture();
+		textureB();
 		while(!glfwWindowShouldClose(window)) {
 			glfwSwapBuffers(window);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			step();
 			glDisable(GL_BLEND);
 			glfwPollEvents();
@@ -152,7 +151,9 @@ public class MySample {
 //		GL11.glVertex2f(coordX+160,  coordY);
 //		GL11.glVertex2f(coordX+160,  coordY+160);
 //		GL11.glEnd();
+		
 		//mariner
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, marineTexture);
 		GL11.glBegin(GL11.GL_QUADS);
 			GL11.glTexCoord2f(1, 1);
 			GL11.glVertex2f(100, 100);
@@ -163,16 +164,35 @@ public class MySample {
 			GL11.glTexCoord2f(1, 0);
 			GL11.glVertex2f(100,  100+200);
 		GL11.glEnd();
-//		
+
+		//sky
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, skyTexture);
+		GL11.glBegin(GL11.GL_QUADS);
+			GL11.glTexCoord2f(1, 1);
+			GL11.glVertex2f(300, 300);
+			GL11.glTexCoord2f(0, 1);
+			GL11.glVertex2f(300+200,  300);
+			GL11.glTexCoord2f(0, 0);
+			GL11.glVertex2f(300+200,  300+200);
+			GL11.glTexCoord2f(1, 0);
+			GL11.glVertex2f(300,  300+200);
+		GL11.glEnd();
 	}
 	
 	private void texture() {
 		File file = new File("src/main/resources/marine.png");
 		img = TextureLoader.loadImage(file);
-		res = TextureLoader.loadTexture(img);
+		marineTexture = TextureLoader.loadTexture(img);
 	}
 	
-	private static int res;
+	private void textureB() {
+		File file = new File("src/main/resources/sky.png");
+		BufferedImage im = TextureLoader.loadImage(file);
+		skyTexture = TextureLoader.loadTexture(im);
+	}
+	
+	private int skyTexture;
+	private int marineTexture;
 	private int coordX = 300;
 	private int coordY = 300;
 	
