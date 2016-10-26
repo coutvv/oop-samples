@@ -59,8 +59,8 @@ public class MySample {
 		});
 		
 		glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
-			System.out.print("switch X:" + coordX);
-			System.out.println("\tswitch Y:" + coordY);
+			if(action == GLFW_REPEAT) System.out.println("repeat");
+			if(action == GLFW_RELEASE) return; //чтобы дважды не жалась
 			switch (key) {
 			case GLFW_KEY_UP:
 				if(coordY < 440)
@@ -84,9 +84,9 @@ public class MySample {
 			default:
 				break;
 			}
-			System.out.print("switch X:" + coordX);
-			System.out.println("\tswitch Y:" + coordY);
 		});
+		
+		
 		
 		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 		
@@ -116,7 +116,6 @@ public class MySample {
 		while(!glfwWindowShouldClose(window)) {
 			glfwSwapBuffers(window);
 			step();
-			glDisable(GL_BLEND);
 			glfwPollEvents();
 		}
 	}
@@ -151,32 +150,33 @@ public class MySample {
 //		GL11.glVertex2f(coordX+160,  coordY);
 //		GL11.glVertex2f(coordX+160,  coordY+160);
 //		GL11.glEnd();
+
+//		//sky
+//		GL11.glBindTexture(GL11.GL_TEXTURE_2D, skyTexture);
+//		GL11.glBegin(GL11.GL_QUADS);
+//			GL11.glTexCoord2f(1, 1);
+//			GL11.glVertex2f(0, 0);
+//			GL11.glTexCoord2f(0, 1);
+//			GL11.glVertex2f(0+800,  0);
+//			GL11.glTexCoord2f(0, 0);
+//			GL11.glVertex2f(0+800,  0+600);
+//			GL11.glTexCoord2f(1, 0);
+//			GL11.glVertex2f(0,  0+600);
+//		GL11.glEnd();
 		
 		//mariner
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, marineTexture);
 		GL11.glBegin(GL11.GL_QUADS);
 			GL11.glTexCoord2f(1, 1);
-			GL11.glVertex2f(100, 100);
+			GL11.glVertex2f(coordX, coordY);
 			GL11.glTexCoord2f(0, 1);
-			GL11.glVertex2f(100+200,  100);
+			GL11.glVertex2f(coordX+200,  coordY);
 			GL11.glTexCoord2f(0, 0);
-			GL11.glVertex2f(100+200,  100+200);
+			GL11.glVertex2f(coordX+200,  coordY+200);
 			GL11.glTexCoord2f(1, 0);
-			GL11.glVertex2f(100,  100+200);
+			GL11.glVertex2f(coordX,  coordY+200);
 		GL11.glEnd();
-
-		//sky
-		GL11.glBindTexture(GL11.GL_TEXTURE_2D, skyTexture);
-		GL11.glBegin(GL11.GL_QUADS);
-			GL11.glTexCoord2f(1, 1);
-			GL11.glVertex2f(300, 300);
-			GL11.glTexCoord2f(0, 1);
-			GL11.glVertex2f(300+200,  300);
-			GL11.glTexCoord2f(0, 0);
-			GL11.glVertex2f(300+200,  300+200);
-			GL11.glTexCoord2f(1, 0);
-			GL11.glVertex2f(300,  300+200);
-		GL11.glEnd();
+		
 	}
 	
 	private void texture() {
