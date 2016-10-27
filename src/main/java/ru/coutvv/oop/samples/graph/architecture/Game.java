@@ -38,6 +38,7 @@ public class Game {
 	public void loop(long window) {
 		while(!glfwWindowShouldClose(window)) {
 			glfwSwapBuffers(window);
+			screen.clean();
 			for(DrawableObject obj : objs) {
 				screen.draw(obj);
 			}

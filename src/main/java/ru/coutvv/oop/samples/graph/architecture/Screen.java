@@ -101,6 +101,10 @@ public class Screen {
 			GL11.glVertex2f(x, y + height);
 		GL11.glEnd();
 	}
+	
+	public void clean() {
+		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+	}
 
 	public int loadTexture(String filename) {
 		File file = new File(filename);
