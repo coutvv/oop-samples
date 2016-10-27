@@ -44,7 +44,7 @@ public class Game {
 			glfwPollEvents();
 			try {
 				obj.setX(obj.getX() + 15);
-				Thread.sleep(1000);
+				Thread.sleep(300);
 				System.out.println(objs.size());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
