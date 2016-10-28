@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.coutvv.oop.samples.graph.architecture.model.DrawableProbe;
+import ru.coutvv.oop.samples.starcraft.unit.protoss.Probe;
 
 /**
  * Синглтон игры
@@ -19,14 +20,17 @@ public class Game {
 	private static Game instance = new Game();
 	
 	private Screen screen;
+	private Probe probe1, probe2;
 	private Game() {
 		screen = new Screen();
 		long window = screen.init();
 		//вынести в фабрику?
 		int probeTexture = screen.loadTexture("src/main/resources/probe.png");
-		obj = new DrawableProbe(200,100, 400,400, probeTexture);
+		probe1 = new Probe();
+		probe2 = new Probe();
+		obj = new DrawableProbe(probe1, 400,400, probeTexture);
 		objs.add(obj);
-		objs.add(new DrawableProbe(50, 25, 50, 50, probeTexture));
+		objs.add(new DrawableProbe(probe2, 50, 50, probeTexture));
 		loop(window);
 		
 	}
@@ -36,6 +40,7 @@ public class Game {
 	DrawableProbe obj;
 
 	public void loop(long window) {
+		int tirell = 2;
 		while(!glfwWindowShouldClose(window)) {
 			glfwSwapBuffers(window);
 			screen.clean();
@@ -44,10 +49,13 @@ public class Game {
 			}
 			glfwPollEvents();
 			try {
-				obj.setX(obj.getX() + 15);
-				Thread.sleep(300);
-				System.out.println(objs.size());
-			} catch (InterruptedException e) {
+//				obj.setX(obj.getX() + 15);
+				if(!(probe1.getX() <= 800 && probe1.getX() >= 0)){
+					tirell = -tirell;
+				}
+				probe1.setX(probe1.getX() + tirell);
+//				Thread.sleep(1);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
