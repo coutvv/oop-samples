@@ -1,5 +1,10 @@
 package ru.coutvv.oop.samples.graph.architecture;
 
+/**
+ * Декоратор для юнитов
+ * @author lomovtsevrs
+ *
+ */
 public interface DrawableObject {
 
 	public double getX();

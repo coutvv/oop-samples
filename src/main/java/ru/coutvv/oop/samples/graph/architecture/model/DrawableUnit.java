@@ -1,23 +1,23 @@
 package ru.coutvv.oop.samples.graph.architecture.model;
 
 import ru.coutvv.oop.samples.graph.architecture.DrawableObject;
-import ru.coutvv.oop.samples.starcraft.unit.protoss.Probe;
+import ru.coutvv.oop.samples.starcraft.unit.Unit;
 
 /**
  * Внезапно адаптер, лiл
  * @author lomovtsevrs
  *
  */
-public class DrawableProbe implements DrawableObject{
+public class DrawableUnit implements DrawableObject{
 	
-	private Probe probe;
+	private Unit unit;
 	
 	private int height; 
 	private int width; 
 	private int textureId;
 	
-	public DrawableProbe(Probe probe, int height, int width, int textureId) {
-		this.probe = probe;
+	public DrawableUnit(Unit unit, int height, int width, int textureId) {
+		this.unit = unit;
 		this.height= height;
 		this.width = width;
 		this.textureId = textureId;
@@ -44,11 +44,11 @@ public class DrawableProbe implements DrawableObject{
 
 	@Override
 	public double getX() {
-		return probe.getX();
+		return unit.getX();
 	}
 
 	@Override
 	public double getY() {
-		return probe.getY();
+		return unit.getY();
 	}
 }

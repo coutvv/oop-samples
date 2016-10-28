@@ -7,7 +7,7 @@ import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.coutvv.oop.samples.graph.architecture.model.DrawableProbe;
+import ru.coutvv.oop.samples.graph.architecture.model.DrawableUnit;
 import ru.coutvv.oop.samples.starcraft.unit.protoss.Probe;
 
 /**
@@ -28,16 +28,16 @@ public class Game {
 		int probeTexture = screen.loadTexture("src/main/resources/probe.png");
 		probe1 = new Probe();
 		probe2 = new Probe();
-		obj = new DrawableProbe(probe1, 400,400, probeTexture);
+		obj = new DrawableUnit(probe1, 400,400, probeTexture);
 		objs.add(obj);
-		objs.add(new DrawableProbe(probe2, 50, 50, probeTexture));
+		objs.add(new DrawableUnit(probe2, 50, 50, probeTexture));
 		loop(window);
 		
 	}
 	
 	private List<DrawableObject> objs = new ArrayList<>();
 	
-	DrawableProbe obj;
+	DrawableUnit obj;
 
 	public void loop(long window) {
 		int tirell = 2;
