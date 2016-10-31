@@ -4,13 +4,8 @@ import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import ru.coutvv.oop.samples.graph.architecture.model.DrawableUnit;
 import ru.coutvv.oop.samples.graph.architecture.time.Scene;
 import ru.coutvv.oop.samples.graph.architecture.time.SimpleScene;
-import ru.coutvv.oop.samples.starcraft.unit.protoss.Probe;
 
 /**
  * Синглтон игры
@@ -23,6 +18,7 @@ public class Game {
 	
 	private Screen screen;
 	private Scene scene;
+	
 	private Game() {
 		screen = new Screen();
 		long window = screen.init();
@@ -34,8 +30,6 @@ public class Game {
 	}
 	
 	
-	DrawableUnit obj;
-
 	public void loop(long window) {
 		while(!glfwWindowShouldClose(window)) {
 			glfwSwapBuffers(window);
