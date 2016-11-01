@@ -5,7 +5,7 @@ import java.util.List;
 import ru.coutvv.oop.samples.graph.architecture.DrawableObject;
 
 /**
- * Интерфейс сцены мира(физика)
+ * Интерфейс сцены мира(физика) фасад? 
  * @author lomovtsevrs
  */
 public interface Scene {
@@ -17,7 +17,7 @@ public interface Scene {
 	List<DrawableObject> getObjects();
 	
 	/**
-	 * Сделать изменения
+	 * Сделать изменения за фрейм(передвижения юнитов, полёт пули и так далее)
 	 */
 	void turnAround();
 }
