@@ -36,6 +36,10 @@ public abstract class Unit implements AIBehavior{
 		moveBehavior.move(this, x, y);
 	}
 	
+	public void frameMove(double x, double y) {
+		moveBehavior.moveByFrame(this, x, y);
+	}
+	
 	public void hit(Unit unit) {
 		hitBehavior.hit(this, unit);
 	}
@@ -124,4 +128,5 @@ public abstract class Unit implements AIBehavior{
 	public void enemyNear(double x, double y) {
 		//ничего не делаем
 	}
+	
 }

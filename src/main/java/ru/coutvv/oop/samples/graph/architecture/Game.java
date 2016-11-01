@@ -4,7 +4,6 @@ import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
-import ru.coutvv.oop.samples.graph.architecture.time.MenuScene;
 import ru.coutvv.oop.samples.graph.architecture.time.Scene;
 import ru.coutvv.oop.samples.graph.architecture.time.SimpleScene;
 
@@ -20,12 +19,13 @@ public class Game {
 	private Screen screen;
 	private Scene scene;
 	
+	
 	private Game() {
 		screen = new Screen();
 		long window = screen.init();
 		//вынести в фабрику?
-		int buttonTexture = screen.loadTexture("src/main/resources/start-button.png");
-		scene = new MenuScene(buttonTexture);
+		int probeTexture = screen.loadTexture("src/main/resources/probe.png");
+		scene = new SimpleScene(probeTexture);
 		loop(window);
 		
 	}

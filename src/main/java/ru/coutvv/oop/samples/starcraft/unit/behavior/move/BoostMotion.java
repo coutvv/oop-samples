@@ -30,5 +30,21 @@ public class BoostMotion implements MoveBehavior{
 			}
 		}
 	}
+	
+	@Override
+	public void moveByFrame(Unit unit, double x, double y) {
+		double ddistance = unit.getMoveSpeed();
+		double a = unit.getX(),
+			   b = unit.getY();
+		double distance = Math.sqrt((x-unit.getX())*(x-unit.getX()) + (y-unit.getY())*(y-unit.getY()));
+		double sin = (y-b)/distance,
+			   cos = (x-a)/distance;
+		
+		double dx = ddistance * sin,
+			   dy = ddistance * cos;
+		
+		unit.setX(unit.getX() + dx);
+		unit.setY(unit.getY() + dy);
+	}
 
 }

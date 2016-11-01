@@ -14,7 +14,7 @@ public class Probe extends Unit {
 		this.setHealth(40);
 		this.setAttackDamage(5);
 		this.setAttackRange(0);
-		this.setMoveSpeed(5);
+		this.setMoveSpeed(1);
 	}
 	
 	public Probe(HitBehavior hit, MoveBehavior move) {
