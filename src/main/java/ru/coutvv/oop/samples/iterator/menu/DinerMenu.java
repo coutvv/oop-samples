@@ -1,11 +1,12 @@
-package ru.coutvv.oop.samples.iterator;
+package ru.coutvv.oop.samples.iterator.menu;
 
-public class DinerMenu {
+public class DinerMenu extends AbstractMenu {
 	static final int MAX_ITEMS = 6;
 	int numberOfItems = 0;
 	MenuItem[] menuItems;
 	
 	public DinerMenu() {
+		super("LUNCH MENU");
 		menuItems = new MenuItem[MAX_ITEMS];
 		
 		addItem("Vegetarian BLT",

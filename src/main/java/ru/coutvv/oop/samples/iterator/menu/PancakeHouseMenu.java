@@ -1,12 +1,13 @@
-package ru.coutvv.oop.samples.iterator;
+package ru.coutvv.oop.samples.iterator.menu;
 
 import java.util.ArrayList;
 
-public class PancakeHouseMenu {
+public class PancakeHouseMenu extends AbstractMenu {
 
 	ArrayList menuItems;
 	
 	public PancakeHouseMenu() {
+		super("BREAKFAST MENU");
 		menuItems = new ArrayList();
 		
 		addItem("K&Bs Pankace Breakfast",

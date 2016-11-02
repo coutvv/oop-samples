@@ -8,5 +8,5 @@ public interface AliceWaitress {
 	
 	void printLunchMenu();
 	
-	boolean isItemVegetarian(String name);
+	boolean isItemVegetarian(String name) throws Exception;
 }
