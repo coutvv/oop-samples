@@ -1,4 +1,4 @@
-package ru.coutvv.oop.samples.iterator;
+package ru.coutvv.oop.samples.iterator.menu;
 
 public interface Iterator {
 

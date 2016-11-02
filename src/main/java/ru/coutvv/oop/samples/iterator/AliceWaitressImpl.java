@@ -1,21 +1,49 @@
 package ru.coutvv.oop.samples.iterator;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ru.coutvv.oop.samples.iterator.menu.Iterator;
+import ru.coutvv.oop.samples.iterator.menu.Menu;
+import ru.coutvv.oop.samples.iterator.menu.MenuItem;
+
 public class AliceWaitressImpl implements AliceWaitress {
 	
-	PancakeHouseMenu pancakeHouseMenu;
-	DinerMenu dinerMenu;
+	List<Menu> menus;
 
-	public AliceWaitressImpl(PancakeHouseMenu pancakeHouseMenu, DinerMenu dinerMenu) {
+	public AliceWaitressImpl(Menu... menu) {
 		super();
-		this.pancakeHouseMenu = pancakeHouseMenu;
-		this.dinerMenu = dinerMenu;
+		this.menus = new ArrayList<Menu>();
+		for(Menu m: menu) {
+			menus.add(m);
+		}
 	}
 
 	@Override
 	public void printMenu() {
 		System.out.println("<<ALL MENU>>");
-		printBreakfastMenu();
-		printLunchMenu();
+		for(Menu menu : menus) {
+			printMenu(menu);
+		}
+	}
+	
+	public void printMenu(String name) {
+		Menu m = getMenu(name);
+		if(m!=null) {
+			printMenu(m);
+		}
+	}
+	
+	private void printMenu(Menu menu) {
+		System.out.println(menu.getMenuName());
+		printByIterator(menu.createIterator());
+	}
+	
+	private Menu getMenu(String name) {
+		for(Menu m: menus) { 
+			if(m.getMenuName().equals(name)) return m;
+		}
+		return null;
 	}
 	
 	private void printByIterator(Iterator iter) {
@@ -27,38 +55,35 @@ public class AliceWaitressImpl implements AliceWaitress {
 		}
 	}
 
-	@Override
-	public void printBreakfastMenu() {
-		System.out.println("BREAKFAST");
-		Iterator pankIter = pancakeHouseMenu.createIterator();
-		printByIterator(pankIter);
-	}
 
 	@Override
-	public void printLunchMenu() {
-		Iterator dinIter = dinerMenu.createIterator();
-		System.out.println("LUNCH");
-		printByIterator(dinIter);
-	}
-
-	@Override
-	public boolean isItemVegetarian(String name) {
-		Iterator pankIter = pancakeHouseMenu.createIterator();
-		Iterator dinIter = dinerMenu.createIterator();
-		MenuItem res = findByName(pankIter, name);
-		if(res == null) {
-			res = findByName(dinIter, name);
+	public boolean isItemVegetarian(String name) throws Exception {
+		for(Menu menu : menus) {
+			Iterator iter = menu.createIterator();
+			MenuItem mi = findMenuItemByName(iter, name);
+			if(mi != null) return mi.isVegetarian();
 		}
-		return res.isVegetarian();
+		throw new Exception("Нет такого блюда!");
 	}
 	
-	public MenuItem findByName(Iterator iter, String name) {
+	public MenuItem findMenuItemByName(Iterator iter, String name) {
 		while(iter.hasNext()) {
 			MenuItem mi = (MenuItem) iter.next();
-			if(mi.name.equals(name))
+			if(mi.getName().equals(name))
 				return mi;
 		}
 		return null;
 	}
+
+	@Override
+	public void printBreakfastMenu() {
+		printMenu("BREAKFAST MENU");
+	}
+
+	@Override
+	public void printLunchMenu() {
+		printMenu("LUNCH MENU");
+	}
+	
 
 }
