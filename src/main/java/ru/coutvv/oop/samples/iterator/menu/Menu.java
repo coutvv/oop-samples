@@ -1,6 +1,8 @@
 package ru.coutvv.oop.samples.iterator.menu;
 
+import java.util.Iterator;
+
 public interface Menu {
 	String getMenuName();
-	Iterator createIterator();
+	Iterator<MenuItem> createIterator();
 }

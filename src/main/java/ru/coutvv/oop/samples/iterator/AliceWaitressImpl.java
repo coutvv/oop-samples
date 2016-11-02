@@ -1,9 +1,9 @@
 package ru.coutvv.oop.samples.iterator;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-import ru.coutvv.oop.samples.iterator.menu.Iterator;
 import ru.coutvv.oop.samples.iterator.menu.Menu;
 import ru.coutvv.oop.samples.iterator.menu.MenuItem;
 
@@ -46,7 +46,7 @@ public class AliceWaitressImpl implements AliceWaitress {
 		return null;
 	}
 	
-	private void printByIterator(Iterator iter) {
+	private void printByIterator(Iterator<MenuItem> iter) {
 		while(iter.hasNext()) {
 			MenuItem mi = (MenuItem) iter.next();
 			System.out.print(mi.getName() + ", ");

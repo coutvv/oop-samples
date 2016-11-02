@@ -1,5 +1,7 @@
 package ru.coutvv.oop.samples.iterator.menu;
 
+import java.util.Iterator;
+
 public class DinerMenu extends AbstractMenu {
 	static final int MAX_ITEMS = 6;
 	int numberOfItems = 0;
@@ -44,11 +46,11 @@ public class DinerMenu extends AbstractMenu {
 //		return menuItems;
 //	}
 	
-	public Iterator createIterator() {
-		return new Iterator() {
+	public Iterator<MenuItem> createIterator() {
+		return new Iterator<MenuItem>() {
 			private int last = 0;
 			@Override
-			public Object next() {
+			public MenuItem next() {
 				if(hasNext()) {
 					MenuItem result =menuItems[last]; 
 					last++;

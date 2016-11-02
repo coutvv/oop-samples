@@ -1,6 +1,7 @@
 package ru.coutvv.oop.samples.iterator.menu;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class PancakeHouseMenu extends AbstractMenu {
 
@@ -41,23 +42,6 @@ public class PancakeHouseMenu extends AbstractMenu {
 	}
 	
 	public Iterator createIterator() {
-		return new Iterator() {
-			private int last = 0;
-			@Override
-			public Object next() {
-				if(hasNext()) {
-
-					MenuItem result = (MenuItem) menuItems.get(last); 
-					last++;
-					return result;
-				}
-				return null;
-			}
-			
-			@Override
-			public boolean hasNext() {
-				return last < menuItems.size();
-			}
-		};
+		return menuItems.iterator();
 	}
 }
