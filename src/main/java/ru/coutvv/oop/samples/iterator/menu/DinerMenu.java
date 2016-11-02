@@ -45,24 +45,33 @@ public class DinerMenu extends AbstractMenu {
 //	public MenuItem[] getMenuItems() {
 //		return menuItems;
 //	}
-	
+	/**
+	 * Паттерн Итератор предоставляет механизм 
+	 * последовательного перебора элементов
+	 * коллекции без раскрытия её внутреннего 
+	 * предсталвения
+	 * 
+	 * В старкрафте можно юзать для перебора 
+	 * юнитов, строений и так далее например
+	 */
 	public Iterator<MenuItem> createIterator() {
-		return new Iterator<MenuItem>() {
-			private int last = 0;
-			@Override
-			public MenuItem next() {
-				if(hasNext()) {
-					MenuItem result =menuItems[last]; 
-					last++;
-					return result;
-				}
-				return null;
-			}
-			
-			@Override
-			public boolean hasNext() {
-				return last < numberOfItems;
-			}
-		};
+		return new AlternatingDinerMenuIterator(menuItems);
+//		return new Iterator<MenuItem>() {
+//			private int last = 0;
+//			@Override
+//			public MenuItem next() {
+//				if(hasNext()) {
+//					MenuItem result =menuItems[last]; 
+//					last++;
+//					return result;
+//				}
+//				return null;
+//			}
+//			
+//			@Override
+//			public boolean hasNext() {
+//				return last < numberOfItems;
+//			}
+//		};
 	}
 }
