@@ -3,7 +3,13 @@ package ru.coutvv.oop.samples.iterator.menu;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+/**
+ * Паттерн Итератор -- предоставляет механизм
+ * последовательного перебора элементов коллекции
+ * без раскрытия её внутреннего представления.
+ *  
+ * @author lomovtsevrs
+ */
 public class OverIterator implements Iterator {
 	
 	@Override
