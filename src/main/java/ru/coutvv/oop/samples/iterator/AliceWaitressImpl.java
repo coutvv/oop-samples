@@ -36,7 +36,7 @@ public class AliceWaitressImpl implements AliceWaitress {
 	
 	private void printMenu(Menu menu) {
 		System.out.println(menu.getMenuName());
-		printByIterator(menu.createIterator());
+		printByIterator(menu.getOverIterator());
 	}
 	
 	private Menu getMenu(String name) {
@@ -59,14 +59,14 @@ public class AliceWaitressImpl implements AliceWaitress {
 	@Override
 	public boolean isItemVegetarian(String name) throws Exception {
 		for(Menu menu : menus) {
-			Iterator iter = menu.createIterator();
+			Iterator<MenuItem> iter = menu.getOverIterator();
 			MenuItem mi = findMenuItemByName(iter, name);
 			if(mi != null) return mi.isVegetarian();
 		}
-		throw new Exception("Нет такого блюда!");
+		throw new Exception("Нет такого блюда! По крайней мере сегодня");
 	}
 	
-	public MenuItem findMenuItemByName(Iterator iter, String name) {
+	public MenuItem findMenuItemByName(Iterator<MenuItem>  iter, String name) {
 		while(iter.hasNext()) {
 			MenuItem mi = (MenuItem) iter.next();
 			if(mi.getName().equals(name))

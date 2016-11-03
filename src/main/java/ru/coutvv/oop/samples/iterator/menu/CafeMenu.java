@@ -30,7 +30,6 @@ public class CafeMenu extends AbstractMenu {
 		menuItems.put(mi.getName(), mi);
 	}
 	
-	@Override
 	public Iterator<MenuItem> createIterator() {
 		return menuItems.values().iterator();
 	}

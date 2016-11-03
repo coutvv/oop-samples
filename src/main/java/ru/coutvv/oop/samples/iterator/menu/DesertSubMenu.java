@@ -22,10 +22,25 @@ public class DesertSubMenu extends AbstractMenu {
 		subMenuItems.add(mi);
 	}
 	
-	@Override
 	public Iterator<MenuItem> createIterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Iterator<MenuItem>(){
+			int last = 0;
+			@Override
+			public boolean hasNext() {
+				return last < subMenuItems.size();
+			}
+
+			@Override
+			public MenuItem next() {
+				if(hasNext()) {
+					MenuItem result =subMenuItems.get(last);
+					last++;
+					return result;
+				}
+				return null;
+			}
+			
+		};
 	}
 
 }

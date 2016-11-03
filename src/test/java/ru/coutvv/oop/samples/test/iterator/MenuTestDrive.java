@@ -19,7 +19,7 @@ public class MenuTestDrive {
 		cm.setSubMenu(new DesertSubMenu());
 		AliceWaitress aw = new AliceWaitressImpl(phm, dm, cm);
 		aw.printMenu();
-		System.out.println(aw.isItemVegetarian("Vegetarian BLT"));
+		System.out.println(aw.isItemVegetarian("Щербет"));
 		
 	}
 }

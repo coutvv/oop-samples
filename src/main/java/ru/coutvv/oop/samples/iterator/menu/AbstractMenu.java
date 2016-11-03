@@ -30,4 +30,6 @@ public abstract class AbstractMenu implements Menu {
 		
 	}
 	
+	public abstract Iterator<MenuItem> createIterator();
+	
 }
