@@ -1,79 +1,71 @@
 package ru.coutvv.oop.samples.state;
 
+import ru.coutvv.oop.samples.state.states.HasQuarterState;
+import ru.coutvv.oop.samples.state.states.NoQuarterState;
+import ru.coutvv.oop.samples.state.states.SoldOutState;
+import ru.coutvv.oop.samples.state.states.SoldState;
+import ru.coutvv.oop.samples.state.states.State;
+
 public class GumballMachine {
 	
-	private State state = State.sold_out;
+	State nqs = new NoQuarterState(this);
+	State sos = new SoldOutState(this);
+	State ss = new SoldState(this);
+	State hqs = new HasQuarterState(this);
+	
+	State state;
 	private int count = 0;
 	
 	public GumballMachine(int count){ 
 		this.count = count;
 		if(count > 0) {
-			state = State.no_quarter;
+			state = nqs;
+		} else {
+			state = ss;
 		}
 	}
 	
 	public void insertQuarter() {
-		switch (state) {
-		case no_quarter:
-			state = State.has_quarter;
-			System.out.println("You inserted a quarter!");
-			break;
-			
-		default:
-			throw new UnsupportedOperationException("Куда четвертак суёшь, сукка!!");
-		}
+		state.insertQuarter();
 	}
 	
 	public void ejectQuarter() {
-		switch (state) {
-		case has_quarter:
-			state = State.no_quarter;
-			System.out.println("returned quarter");
-			break;
-
-		default:
-			throw new UnsupportedOperationException("Нету нихера же не видишь!!?");
-		}
+		state.ejectQuarter();
 	}
 	
 	public void turnCrank() {
-		switch (state) {
-		case has_quarter:
-			state = State.sold;
-			System.out.println("turn turn turn... fap fap fap");
-			break;
-
-		default:
-			throw new UnsupportedOperationException("Чё крутишь то!!?");
-		}
+		state.turnCrank();
 	}
 	
 	public void dispense() {
-		switch (state) {
-		case sold:
-			count--;
-			System.out.println("A gumball comes rolling out the slot!");
-			if(count == 0) {
-				state = State.sold_out;
-			} else {
-				state = State.no_quarter;
-			}
-			break;
-
-		default:
-			throw new UnsupportedOperationException("Ошибка еп");
-		}
+		state.dispense();
 	}
 	
 	public String toString() {
 		return "State: " + state.toString() + "; count: " + count;
 	}
 	
-}
-
-enum State {
-	sold_out,
-	no_quarter,
-	has_quarter,
-	sold
+	public void setState(State state) {
+		this.state = state;
+	}
+	
+	public State getHasQuarterState() {
+		return hqs;
+	}
+	public State getNoQuarterState() {
+		return nqs;
+	}
+	public State getSoldOutState() {
+		return sos;
+	}
+	public State getSoldState() {
+		return ss;
+	}
+	
+	public boolean hasBalls() {
+		return count > 0;
+	}
+	public void decreaseBalls() {
+		count--;
+	}
 }
