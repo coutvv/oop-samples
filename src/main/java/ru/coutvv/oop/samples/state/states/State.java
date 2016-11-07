@@ -1,10 +1,12 @@
 package ru.coutvv.oop.samples.state.states;
 
+import java.io.Serializable;
+
 import ru.coutvv.oop.samples.state.GumballMachine;
 
-public abstract class State {
+public abstract class State implements Serializable {
 
-	GumballMachine gm;
+	transient GumballMachine gm;
 	public State(GumballMachine gm) {
 		this.gm = gm;
 	}

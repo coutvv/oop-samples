@@ -7,6 +7,11 @@ import ru.coutvv.oop.samples.state.states.SoldState;
 import ru.coutvv.oop.samples.state.states.State;
 import ru.coutvv.oop.samples.state.states.WinnerState;
 
+/**
+ * 
+ * @author lomovtsevrs
+ *
+ */
 public class GumballMachine {
 	
 	State nqs = new NoQuarterState(this);
@@ -16,7 +21,7 @@ public class GumballMachine {
 	State winner = new WinnerState(this);
 	
 	State state;
-	private int count = 0;
+	protected int count = 0;
 	
 	public GumballMachine(int count){ 
 		this.count = count;
@@ -86,5 +91,9 @@ public class GumballMachine {
 	
 	public void decreaseBalls() {
 		count--;
+	}
+
+	public State getState() {
+		return this.state;
 	}
 }
