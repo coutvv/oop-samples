@@ -1,8 +1,12 @@
 package ru.coutvv.oop.samples.state.states;
 
+import java.util.Random;
+
 import ru.coutvv.oop.samples.state.GumballMachine;
 
 public class HasQuarterState extends State {
+	
+	Random randomWinner = new Random(System.currentTimeMillis());
 
 	public HasQuarterState(GumballMachine gm) {
 		super(gm);
@@ -17,9 +21,12 @@ public class HasQuarterState extends State {
 
 	@Override
 	public void turnCrank() {
-		System.out.println("turn turn turn... fap fap fap");
-		//тут ещё возможен приз!!
-		gm.setState(gm.getSoldState());
+		int winner = randomWinner.nextInt(10);//10% chance
+		if((winner == 0) && gm.hasWinBalls()) {
+			gm.setState(gm.getWinnerState());
+		} else {
+			gm.setState(gm.getSoldState());
+		}
 	}
 
 

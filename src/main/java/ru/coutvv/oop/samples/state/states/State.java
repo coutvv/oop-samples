@@ -28,4 +28,8 @@ public abstract class State {
 	public String toString() {
 		return this.getClass().getSimpleName();
 	}
+	
+	public void fill(int count) {
+		throw new UnsupportedOperationException("Операция запрещена");
+	}
 }

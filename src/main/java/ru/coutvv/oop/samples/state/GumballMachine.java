@@ -5,6 +5,7 @@ import ru.coutvv.oop.samples.state.states.NoQuarterState;
 import ru.coutvv.oop.samples.state.states.SoldOutState;
 import ru.coutvv.oop.samples.state.states.SoldState;
 import ru.coutvv.oop.samples.state.states.State;
+import ru.coutvv.oop.samples.state.states.WinnerState;
 
 public class GumballMachine {
 	
@@ -12,6 +13,7 @@ public class GumballMachine {
 	State sos = new SoldOutState(this);
 	State ss = new SoldState(this);
 	State hqs = new HasQuarterState(this);
+	State winner = new WinnerState(this);
 	
 	State state;
 	private int count = 0;
@@ -41,6 +43,10 @@ public class GumballMachine {
 		state.dispense();
 	}
 	
+	public void fill(int count) {
+		state.fill(count);
+	}
+	
 	public String toString() {
 		return "State: " + state.toString() + "; count: " + count;
 	}
@@ -62,9 +68,22 @@ public class GumballMachine {
 		return ss;
 	}
 	
+	public State getWinnerState() {
+		return winner;
+	}
+	
 	public boolean hasBalls() {
 		return count > 0;
 	}
+	
+	public boolean hasWinBalls() {
+		return count > 1;
+	}
+	
+	public void refill(int count) {
+		this.count += count;
+	}
+	
 	public void decreaseBalls() {
 		count--;
 	}
