@@ -43,7 +43,7 @@ public class DJView implements ActionListener, BeatObserver, BPMObserver {
 		setupFrame(viewFrame);
 		viewPanel = new JPanel();
 		beatBar = new BeatBar();
-		bpmOutputLabel = new JLabel("Beat per minute");
+		bpmOutputLabel = new JLabel("Beat per minute: " + model.getBPM());
 		viewPanel.add(BorderLayout.CENTER, bpmOutputLabel);
 		viewPanel.add(BorderLayout.CENTER, beatBar);
 		viewFrame.getContentPane().add(BorderLayout.CENTER,viewPanel);
@@ -61,14 +61,6 @@ public class DJView implements ActionListener, BeatObserver, BPMObserver {
 		frame.setVisible(true);//this create window bleat'
 	}
 	
-	public void updateBPM() {
-		int bpm = model.getBPM();
-		if(bpm == 0) {
-			bpmOutputLabel.setText("offline");
-		} else {
-			bpmOutputLabel.setText("Current BPM : " + bpm);
-		}
-	}
 	
 	public void updateBeat() {
 		beatBar.setValue(100);
@@ -87,7 +79,20 @@ public class DJView implements ActionListener, BeatObserver, BPMObserver {
 	public void createControls() {
 		JFrame addon = new JFrame("DJ Control");
 		setupFrame(addon);
+		startMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.start();
+			}
+		});
 		menu.add(startMenuItem);
+		stopMenuItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.stop();
+			}
+		});
 		menu.add(stopMenuItem);
 		menuBar.add(menu);
 //		addon.getContentPane().add(menuBar);
@@ -126,10 +131,11 @@ public class DJView implements ActionListener, BeatObserver, BPMObserver {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == setBPMButton) {
+		if(e.getSource() == setBPMButton && !bpmTextField.getText().equals("")) {
 			int bpm = Integer.parseInt(bpmTextField.getText());
 			System.out.println("set");
 			controller.setBPM(bpm);
+			
 		} else if(e.getSource() == increaseBPMButton) {
 			controller.increaseBPM();
 		} else if(e.getSource() == decreaseBPMButton) {
@@ -140,6 +146,13 @@ public class DJView implements ActionListener, BeatObserver, BPMObserver {
 	@Override
 	public void update() {
 		beatBar.setValue(100);
+		
+		int bpm = model.getBPM();
+		if(bpm == 0) {
+			bpmOutputLabel.setText("offline");
+		} else {
+			bpmOutputLabel.setText("Current BPM : " + bpm);
+		}
 	}
 
 }
